@@ -1,7 +1,7 @@
 # Skill 分享：从 Prompt 到 Agent 能力资产
 
-> 技术分享 PPT 大纲版
-> 适合 15~30 分钟内部分享 / 社区分享 / 直播分享
+> 30 分钟技术分享 PPT 大纲版
+> 适合内部技术分享 / 社区分享 / 直播分享
 
 ---
 
@@ -13,9 +13,12 @@ Skill 分享：从 Prompt 到 Agent 能力资产
 **副标题**
 为什么 Skill 会成为 Agent 时代最值得沉淀的工作流载体
 
-**可讲点**
-- 今天不讲玄学，重点讲 Skill 的本质、设计方法和落地实践
-- 目标：听完后大家知道 Skill 是什么、为什么重要、怎么开始做
+**开场建议（1 分钟）**
+- 今天不只聊 Skill 是什么，更聊它为什么会成为 Agent 工程化的关键层
+- 听完后，希望大家带走三件事：
+  - 知道 Skill 的本质
+  - 知道 Skill 和 Prompt / MCP 的边界
+  - 知道怎么开始做自己的 Skill
 
 ---
 
@@ -75,7 +78,7 @@ my-skill/
 ```
 
 **可讲点**
-- Skill 不是一个大模型插件黑盒，本质上是透明、可读、可维护的目录结构
+- Skill 不是一个黑盒插件，而是透明、可读、可维护的能力目录
 
 ---
 
@@ -95,9 +98,6 @@ my-skill/
 - 降低上下文污染
 - 让 Skill 具备可扩展性
 - 比“超长系统提示词”更优雅
-
-**引用观点（可口播）**
-- Anthropic 和 Google 都把 progressive disclosure 当作 Skill 架构的核心原则
 
 ---
 
@@ -173,36 +173,117 @@ MCP 给能力，Skill 给方法
 
 ---
 
-## 第 9 页：以内容创作为例，Skill 怎么发挥价值
+## 第 9 页：Skill 示例实操页（内容型）
 
 **标题**
-一个“技术文章转公众号”Skill 会长什么样
+一个“技术文章转公众号”Skill 会怎么工作
 
-**流程拆解**
-- 读取原文
-- 提取核心观点与结构
-- 改写成公众号语气
-- 增加标题、导语、小结
-- 输出 Markdown
+**用户输入**
+- 帮我把这篇 AI 技术文章改成公众号版本
 
-**为什么值得做成 Skill**
-- 重复率高
-- 审美和风格要求稳定
-- 每次手写 Prompt 很浪费
-- 可以持续迭代成团队资产
+**Skill 触发后内部流程**
+1. 读取原文
+2. 提取核心观点、背景、结论
+3. 重新组织结构：导语 / 主体 / 小结
+4. 改成更适合传播的中文表达
+5. 生成标题、摘要、Markdown 输出
+
+**输出特点**
+- 风格统一
+- 结构稳定
+- 每次都遵循同一套改写标准
+
+**可讲点**
+- 这种场景特别适合做 Skill，因为重复度高、流程稳定、风格约束强
 
 ---
 
-## 第 10 页：好的 Skill，最关键先写好 description
+## 第 10 页：Skill 示例实操页（开发型）
+
+**标题**
+一个“PR Review Summary”Skill 会怎么工作
+
+**用户输入**
+- 帮我总结这个 PR 的改动和风险
+
+**Skill 内部流程**
+1. 获取 PR diff
+2. 识别核心改动模块
+3. 提取功能变更 / 重构点 / 风险点
+4. 输出结构化总结
+5. 如有必要，补充 review checklist
+
+**稳定收益**
+- 输出结构统一
+- 风险表达更规范
+- 适合团队内部 code review 流程复用
+
+---
+
+## 第 11 页：真实 SKILL.md 拆解页（最小可用版）
+
+**标题**
+一个真实 `SKILL.md` 到底该怎么写
+
+**示例**
+```md
+---
+name: article-to-wechat
+description: Rewrite long-form technical content into concise WeChat-style posts. Use when user asks to summarize, rewrite, polish, or adapt articles for公众号/社媒发布.
+---
+
+# Article to WeChat
+
+## Instructions
+
+1. Read the source content first.
+2. Extract key观点、结论与结构。
+3. Rewrite into a punchier WeChat style.
+4. Add标题、导语、小结。
+5. Output clean Markdown.
+```
+
+**拆解说明**
+- `name`：Skill 唯一标识，尽量简洁稳定
+- `description`：最关键，决定触发率
+- 正文：只写执行步骤，不写大段背景废话
+
+---
+
+## 第 12 页：真实 SKILL.md 拆解页（进阶版）
+
+**标题**
+从最小 Skill 到可扩展 Skill
+
+**进阶示意**
+```text
+article-to-wechat/
+├── SKILL.md
+├── references/
+│   ├── style-guide.md
+│   └── title-patterns.md
+├── scripts/
+│   └── validate_markdown.py
+└── assets/
+    └── template.md
+```
+
+**每一层的职责**
+- `SKILL.md`：主流程和调度说明
+- `references/`：风格规范、案例、术语表
+- `scripts/`：格式校验、结构检查等确定性逻辑
+- `assets/`：模板、固定资源
+
+**可讲点**
+- 好 Skill 的关键不是把所有东西都塞进 `SKILL.md`
+- 而是通过分层设计，降低上下文负担
+
+---
+
+## 第 13 页：为什么 description 是 Skill 的触发 API
 
 **标题**
 Skill 触发率，往往由这一行决定
-
-**核心要点**
-一个好的 `description` 至少要说清：
-- 做什么
-- 什么时候用
-- 用户可能会怎么说
 
 **反例**
 ```yaml
@@ -214,18 +295,24 @@ description: Helps with documents.
 description: Rewrites long-form technical content into concise, readable WeChat-style posts. Use when user asks to summarize, rewrite, polish, or adapt articles for公众号/社媒发布.
 ```
 
+**判断标准**
+一个好的 description 至少要说清：
+- 做什么
+- 什么时候用
+- 用户可能怎么说
+
 **可讲点**
-- `description` 是触发 API，不是文案修辞比赛
+- `description` 不是简介，它其实更接近“技能路由规则”
 
 ---
 
-## 第 11 页：写好 Skill 的方法论
+## 第 14 页：写好 Skill 的方法论
 
 **标题**
 先有场景，再有 Skill
 
 **核心步骤**
-1. 先找 2~3 个真实任务样本
+1. 找 2~3 个真实任务样本
 2. 拆出重复步骤和关键判断
 3. 把稳定流程写进 `SKILL.md`
 4. 把细节资料移到 `references/`
@@ -237,7 +324,7 @@ description: Rewrites long-form technical content into concise, readable WeChat-
 
 ---
 
-## 第 12 页：Skill 编写的最佳实践
+## 第 15 页：Skill 编写的最佳实践
 
 **标题**
 少写废话，多写执行约束
@@ -252,7 +339,7 @@ description: Rewrites long-form technical content into concise, readable WeChat-
 
 ---
 
-## 第 13 页：最常见的坑
+## 第 16 页：最常见的坑
 
 **标题**
 为什么很多 Skill 看起来不错，用起来却很差
@@ -269,7 +356,80 @@ description: Rewrites long-form technical content into concise, readable WeChat-
 
 ---
 
-## 第 14 页：从官方趋势看，Skill 不只是某家私货
+## 第 17 页：与 MCP 的完整联动案例页（问题背景）
+
+**标题**
+为什么“只有 MCP”还不够
+
+**案例设定**
+假设我们有这样一套能力：
+- Linear MCP：读取项目、创建任务
+- Slack MCP：发送通知
+- Drive MCP：保存交付文档
+- Figma MCP：读取设计资源
+
+**问题**
+如果没有 Skill，Agent 虽然“能调用工具”，但未必知道：
+- 先做什么
+- 后做什么
+- 哪些信息必须校验
+- 产物之间如何关联
+- 失败后如何回退
+
+**结论**
+- MCP 给了能力接入
+- Skill 才把能力串成完整工作流
+
+---
+
+## 第 18 页：与 MCP 的完整联动案例页（完整流程）
+
+**标题**
+一个设计交付 Skill + MCP 的完整工作流
+
+**目标**
+把设计稿转成研发可执行任务，并通知相关团队
+
+**流程**
+1. 用 Figma MCP 拉取设计稿与资源
+2. 解析页面、组件、状态说明
+3. 生成交付说明文档
+4. 用 Drive MCP 保存交付包
+5. 用 Linear MCP 创建开发任务
+6. 把资源链接、设计说明挂到任务上
+7. 用 Slack MCP 通知工程团队
+
+**可讲点**
+- 这是一个典型的多系统编排型 Skill
+- 单独看每个 MCP 都不难，难的是把整个业务动作串对
+
+---
+
+## 第 19 页：与 MCP 的完整联动案例页（Skill 写法）
+
+**标题**
+这种联动案例的 Skill 应该怎么写
+
+**Skill 正文应关注什么**
+- 每个阶段的先后顺序
+- 阶段之间的数据传递
+- 哪些条件不满足时不能继续
+- 如何记录中间产物
+- 失败后如何补救或中止
+
+**典型结构**
+- Phase 1：读取设计资源
+- Phase 2：生成交付文档
+- Phase 3：创建任务与挂载链接
+- Phase 4：通知团队
+
+**关键结论**
+- Skill 不是替代 MCP
+- Skill 是 MCP 的工作流编排层
+
+---
+
+## 第 20 页：从官方趋势看，Skill 不只是某家私货
 
 **标题**
 Skill 正在走向开放标准和跨平台兼容
@@ -285,7 +445,7 @@ Skill 正在走向开放标准和跨平台兼容
 
 ---
 
-## 第 15 页：OpenClaw 视角下的 Skill
+## 第 21 页：OpenClaw 视角下的 Skill
 
 **标题**
 在 OpenClaw 里，Skill 不只是说明书，也是能力分发机制
@@ -298,11 +458,11 @@ Skill 正在走向开放标准和跨平台兼容
 - 适合在个人、团队、插件市场中分发
 
 **可讲价值**
-- Skill 在 OpenClaw 里不是演示功能，而是真正的工程化能力组织方式
+- Skill 在 OpenClaw 里是真正的工程化能力组织方式
 
 ---
 
-## 第 16 页：Skill 生态已经出现了什么
+## 第 22 页：Skill 生态已经出现了什么
 
 **标题**
 从“会写”到“会发现、会安装、会复用”
@@ -319,7 +479,7 @@ Skill 正在走向开放标准和跨平台兼容
 
 ---
 
-## 第 17 页：我对 Skill 的三个判断
+## 第 23 页：我对 Skill 的三个判断
 
 **标题**
 为什么它值得团队现在就开始做
@@ -338,7 +498,7 @@ Skill 会成为组织级工作流沉淀的新形态
 
 ---
 
-## 第 18 页：落地建议
+## 第 24 页：落地建议
 
 **标题**
 如果现在开始做 Skill，第一步该做什么
@@ -359,7 +519,7 @@ Skill 会成为组织级工作流沉淀的新形态
 
 ---
 
-## 第 19 页：结束页
+## 第 25 页：结束页
 
 **标题**
 最后一句话
@@ -373,6 +533,25 @@ Skill 会成为组织级工作流沉淀的新形态
 
 ---
 
+## 附录页：30 分钟时间分配建议
+
+### 0~5 分钟
+- 第 1~6 页：概念、背景、与 Prompt/MCP 的区别
+
+### 5~12 分钟
+- 第 7~10 页：适用场景 + 示例实操页
+
+### 12~18 分钟
+- 第 11~16 页：真实 SKILL.md 拆解 + 最佳实践 + 常见坑
+
+### 18~24 分钟
+- 第 17~19 页：与 MCP 的完整联动案例
+
+### 24~30 分钟
+- 第 20~25 页：生态、趋势、落地建议、总结
+
+---
+
 ## 附录页：可补充展示的参考链接
 
 - Anthropic: Equipping agents for the real world with Agent Skills
@@ -380,18 +559,3 @@ Skill 会成为组织级工作流沉淀的新形态
 - OpenClaw Docs: Skills / Creating Skills
 - agentskills.io 规范站点
 - awesome-agent-skills 资源仓库
-
----
-
-## 演讲者备注（备选）
-
-### 如果你要压缩成 15 分钟
-重点讲：
-- 第 1 / 2 / 4 / 6 / 8 / 10 / 17 / 18 页
-
-### 如果你要扩展成 30 分钟
-可以增加：
-- Skill 示例实操页
-- 一个真实 `SKILL.md` 拆解页
-- 与 MCP 的完整联动案例页
-- OpenClaw / Claude Code / Google ADK 的横向对比页
